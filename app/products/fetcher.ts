@@ -11,4 +11,6 @@ export async function isAuthenticated() {
   if (!user) {
     return redirect("/login");
   }
+
+  return user;
 }
