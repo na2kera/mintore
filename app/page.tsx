@@ -1,9 +1,9 @@
-import Body from "./components/body";
+import KinnikunLink from "./components/KinnikunLink";
 
 const Mintore = () => {
   return (
     <>
-      <Body />
+      <KinnikunLink />
     </>
   );
 };

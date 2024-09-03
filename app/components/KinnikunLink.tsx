@@ -1,7 +1,7 @@
 import { Box, Link, Typography } from "@mui/material";
 import Image from "next/image";
 
-const Body = () => {
+const KinnikunLink = () => {
   return (
     <>
       <Box
@@ -60,4 +60,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default KinnikunLink;
