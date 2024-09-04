@@ -16,3 +16,16 @@ export async function isAuthenticated() {
 
   return user;
 }
+
+// ログイン済のユーザーの情報を取得する関数
+export async function getAuthenticatedUser(userId: string) {
+  let { data: user, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", userId)
+    .single();
+  if (!user) {
+    console.error(error);
+  }
+  return user;
+}
