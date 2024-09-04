@@ -20,7 +20,7 @@ const MyPage: React.FC = async () => {
           justifyContent={"flex-start"}
         >
           <Typography>{userData.name}</Typography>
-          <Typography>{userData.tall}</Typography>
+          <Typography>{userData.height}</Typography>
           <Typography>{userData.weight}</Typography>
         </Box>
       </Container>
