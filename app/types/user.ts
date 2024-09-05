@@ -1,4 +1,4 @@
-type User = {
+export type User = {
   id: string;
   created_at: string;
   height: number;
