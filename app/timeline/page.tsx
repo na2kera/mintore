@@ -7,12 +7,15 @@ import {
   ListItemIcon,
   ListItemText,
   Button,
+  Card,
+  CardContent,
+  Avatar,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import TimelineIcon from "@mui/icons-material/Timeline";
 
-const page = () => {
+const Page = () => {
   return (
     <Box display="flex" height="100vh" bgcolor="#f5f5f5">
       {/*サイドバー*/}
@@ -47,6 +50,39 @@ const page = () => {
         <Typography variant="h4" gutterBottom>
           timeline
         </Typography>
+
+        {/*投稿*/}
+        <Card sx={{ display: "flex", mb: 2 }}>
+          <Avatar sx={{ bgcolor: "purple", m: 2 }}>Ic</Avatar>
+          <CardContent sx={{ flex: 1 }}>
+            <Box sx={{ display: "flex", mb: 2 }}>
+              <Typography variant="body1" sx={{ mr: 2 }}>
+                name
+              </Typography>
+              <Typography variant="body2">date</Typography>
+            </Box>
+            <Typography variant="body2">time</Typography>
+            <Typography variant="body1">一言コメント</Typography>
+            {/* サムネイルの箱 */}
+            <Box
+              sx={{
+                width: 300,
+                height: 150,
+                border: "1px solid #ddd",
+                borderRadius: "4px",
+                overflow: "hidden",
+                mt: 2,
+              }}
+            >
+              <Box
+                component="img"
+                sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+                src="https://i.ytimg.com/vi/nNkCWwwlPEU/sddefault.jpg"
+                alt="説明"
+              />
+            </Box>
+          </CardContent>
+        </Card>
       </Box>
 
       {/*投稿ボタン*/}
@@ -66,4 +102,5 @@ const page = () => {
     </Box>
   );
 };
-export default page;
+
+export default Page;
