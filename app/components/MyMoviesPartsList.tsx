@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const supabase = createClient();
 
-const MoviesPartsList = () => {
+const MyMoviesPartsList = () => {
   const pathname = usePathname();
 
   const [videos, setVideos] = useState<Video[]>([]);
@@ -80,4 +80,4 @@ const MoviesPartsList = () => {
   );
 };
 
-export default MoviesPartsList;
+export default MyMoviesPartsList;
