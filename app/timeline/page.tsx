@@ -29,20 +29,20 @@ const TimeLine = () => {
         </Link>
         <List>
           <Link href="/Mypage">
-            <ListItem button>
+            <ListItem component={"div"}>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText primary="mypage" />
             </ListItem>
           </Link>
-          <ListItem button>
+          <ListItem component={"div"}>
             <ListItemIcon>
               <FitnessCenterIcon />
             </ListItemIcon>
             <ListItemText primary="training" />
           </ListItem>
-          <ListItem button>
+          <ListItem component={"div"}>
             <ListItemIcon>
               <TimelineIcon />
             </ListItemIcon>

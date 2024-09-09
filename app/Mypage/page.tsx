@@ -1,24 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "../components/Header";
 import { Box, Container, Typography } from "@mui/material";
-import { getAuthenticatedUser, isAuthenticated } from "../products/fetcher";
+import {
+  fetchPosts,
+  getAuthenticatedUser,
+  isAuthenticated,
+} from "../products/fetcher";
 import MyPageList from "../components/MyPageList";
-import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
-const supabase = createClient();
-
-const MyPage: React.FC = async () => {
+const MyPage = async () => {
   const user = await isAuthenticated();
   const userData = await getAuthenticatedUser(user.id);
 
-  const { data: posts, error } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("user_id", userData.id);
-  if (error) {
-    console.error(error);
   }
+
+  const posts = await fetchPosts(userData.id);
+
 
   !userData && redirect("/protected");
 
