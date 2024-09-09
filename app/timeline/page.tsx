@@ -11,11 +11,12 @@ import {
   CardContent,
   Avatar,
 } from "@mui/material";
+import Image from "next/image";
 import HomeIcon from "@mui/icons-material/Home";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import TimelineIcon from "@mui/icons-material/Timeline";
 
-const Page = () => {
+const TimeLine = () => {
   return (
     <Box display="flex" height="100vh" bgcolor="#f5f5f5">
       {/*サイドバー*/}
@@ -64,23 +65,12 @@ const Page = () => {
             <Typography variant="body2">time</Typography>
             <Typography variant="body1">一言コメント</Typography>
             {/* サムネイルの箱 */}
-            <Box
-              sx={{
-                width: 300,
-                height: 150,
-                border: "1px solid #ddd",
-                borderRadius: "4px",
-                overflow: "hidden",
-                mt: 2,
-              }}
-            >
-              <Box
-                component="img"
-                sx={{ width: "100%", height: "100%", objectFit: "cover" }}
-                src="https://i.ytimg.com/vi/nNkCWwwlPEU/sddefault.jpg"
-                alt="説明"
-              />
-            </Box>
+            <Image
+              src="/sddefault.jpg"
+              width={300}
+              height={150}
+              alt="Picture of the author"
+            />
           </CardContent>
         </Card>
       </Box>
@@ -103,4 +93,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default TimeLine;
