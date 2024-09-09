@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { Box, Container, Typography } from "@mui/material";
 import { getAuthenticatedUser, isAuthenticated } from "../products/fetcher";
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 const supabase = createClient();
 
@@ -10,6 +11,7 @@ const MyPage: React.FC = async () => {
   const user = await isAuthenticated();
   const userData = await getAuthenticatedUser(user.id);
   console.log(userData);
+  !userData && redirect("/protected");
   return (
     <>
       <Header />
