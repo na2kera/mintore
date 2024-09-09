@@ -11,13 +11,11 @@ const supabase = createClient();
 
 const MoviesPartsList = () => {
   const pathname = usePathname();
-  console.log(pathname);
+
   const [videos, setVideos] = useState<Video[]>([]);
 
   const result = location.href.split("/");
   const bodyparts = result[result.length - 1];
-
-  console.log(bodyparts);
 
   useEffect(() => {
     const fetchBodyPartsVideos = async () => {
@@ -25,7 +23,7 @@ const MoviesPartsList = () => {
         .from("Videos")
         .select("*")
         .eq("body_parts", bodyparts);
-      console.log(Videos);
+
       Videos && setVideos(Videos);
     };
     fetchBodyPartsVideos();
