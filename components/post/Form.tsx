@@ -10,7 +10,7 @@ type Props = { userData: User; isVideo?: boolean };
 const Form = ({ userData, isVideo = false }: Props) => {
   const [activityDate, setActivityDate] = useState<string>("");
   const [moviePath, setMoviePath] = useState<string>("");
-  const [activityTime, setActivityTime] = useState<number>();
+  const [activityTime, setActivityTime] = useState<number>(30);
   const [comment, setComment] = useState<string>("");
   const searchParams = useSearchParams();
 
@@ -31,7 +31,7 @@ const Form = ({ userData, isVideo = false }: Props) => {
   };
 
   const submitReset = async () => {
-    await sendPostData({ postData });
+    postData && (await sendPostData({ postData }));
     setActivityDate("");
     setMoviePath("");
     setActivityTime(30);
