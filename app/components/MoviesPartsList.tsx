@@ -48,16 +48,30 @@ const MoviesPartsList = () => {
               width={"70%"}
               height={"25vh"}
               pl={30}
+              position={"relative"}
             >
-              <Link href={video.youtube_url}>
-                <Image
-                  src={video.thumbnail}
-                  width={350}
-                  height={350}
-                  alt="thumbnail"
-                />
-              </Link>
-              <Typography fontSize={25}>{video.title}</Typography>
+              <Box>
+                <Link href={video.youtube_url}>
+                  <Image
+                    src={video.thumbnail}
+                    width={350}
+                    height={350}
+                    style={{ objectFit: "cover" }}
+                    alt="thumbnail"
+                  />
+                </Link>
+              </Box>
+              <Box maxWidth={"50%"}>
+                <Typography
+                  fontSize={25}
+                  style={{
+                    wordBreak: "break-word",
+                    overflowWrap: "break-word",
+                  }}
+                >
+                  {video.title}
+                </Typography>
+              </Box>
             </Box>
           </Box>
         );
