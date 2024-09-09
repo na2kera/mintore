@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { Box, Container, Typography } from "@mui/material";
 import { getAuthenticatedUser, isAuthenticated } from "../products/fetcher";
+import MyPageList from "../components/MyPageList";
 import { createClient } from "@/utils/supabase/server";
 
 const supabase = createClient();
@@ -9,7 +10,15 @@ const supabase = createClient();
 const MyPage: React.FC = async () => {
   const user = await isAuthenticated();
   const userData = await getAuthenticatedUser(user.id);
-  console.log(userData);
+
+  const { data: posts, error } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("user_id", userData.id);
+  if (error) {
+    console.error(error);
+  }
+
   return (
     <>
       <Header />
@@ -22,6 +31,8 @@ const MyPage: React.FC = async () => {
           <Typography>{userData.name}</Typography>
           <Typography>{userData.height}</Typography>
           <Typography>{userData.weight}</Typography>
+
+          {posts && <MyPageList posts={posts} />}
         </Box>
       </Container>
     </>
