@@ -19,7 +19,6 @@ const MyPage = async () => {
 
   return (
     <>
-      <Header />
       <Box>
         <Box
           paddingLeft={0}
