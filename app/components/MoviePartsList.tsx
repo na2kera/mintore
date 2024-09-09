@@ -6,6 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { Video } from "../types/video";
 import { User } from "../types/user";
+import { sendBookmarkData } from "../products/post";
+import { createClient } from "@/utils/supabase/client";
 
 type Props = {
   video: Video;
@@ -15,12 +17,32 @@ type Props = {
 const MoviePartsList = ({ video, userData }: Props) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
+  const supabase = createClient();
+
   //ブックマークの状態を変更する関数
   const toggleBookmark = async (youtubeUrl: string) => {
     if (isBookmarked) {
       setIsBookmarked(false);
+      //ブックマークを削除する
+      userData.bookmark_list = userData.bookmark_list?.filter(
+        (bookmark) => bookmark !== youtubeUrl
+      );
+      console.log(userData.bookmark_list);
+      await sendBookmarkData({
+        userData,
+        bookmarkData: userData.bookmark_list ?? [],
+      });
     } else {
       setIsBookmarked(true);
+      //ブックマークを追加する
+      userData.bookmark_list = userData.bookmark_list
+        ? [...userData.bookmark_list, youtubeUrl]
+        : [youtubeUrl];
+      console.log(userData.bookmark_list);
+      await sendBookmarkData({
+        userData,
+        bookmarkData: userData.bookmark_list ?? [],
+      });
     }
   };
 

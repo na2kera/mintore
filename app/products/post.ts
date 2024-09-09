@@ -45,3 +45,17 @@ export const sendProfileData = async ({
   }
   alert("プロフィール登録に成功しました");
 };
+
+export const sendBookmarkData = async ({
+  userData,
+  bookmarkData,
+}: {
+  userData: User;
+  bookmarkData: string[];
+}) => {
+  const { data, error } = await supabase
+    .from("users")
+    .update({ bookmark_list: bookmarkData })
+    .eq("id", userData.id)
+    .select();
+};
