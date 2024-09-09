@@ -40,6 +40,7 @@ export async function fetchPosts(userId: string) {
   if (!posts) {
     console.error(error);
   }
+  return posts;
 }
 
 //全体の投稿を取得する関数
@@ -48,6 +49,5 @@ export async function getAllPosts() {
   if (error) {
     console.error(error);
   }
-
   return posts;
 }
