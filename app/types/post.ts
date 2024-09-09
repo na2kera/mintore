@@ -4,4 +4,5 @@ export type Post = {
   movie_path: string;
   activity_time: number;
   comment: string;
+  id: number;
 };
