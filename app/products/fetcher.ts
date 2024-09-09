@@ -29,3 +29,17 @@ export async function getAuthenticatedUser(userId: string) {
   }
   return user;
 }
+
+// ユーザーが投稿したデータを取得する関数
+export async function fetchPosts(userId: string) {
+  let { data: posts, error } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("user_id", userId);
+  console.log(posts);
+  if (!posts) {
+    console.error(error);
+  }
+
+  return posts;
+}
