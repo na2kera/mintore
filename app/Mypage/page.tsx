@@ -12,26 +12,54 @@ import { redirect } from "next/navigation";
 const MyPage = async () => {
   const user = await isAuthenticated();
   const userData = await getAuthenticatedUser(user.id);
+
+  }
+
   const posts = await fetchPosts(userData.id);
+
 
   !userData && redirect("/protected");
 
   return (
     <>
       <Header />
-      <Container>
+      <Box>
         <Box
-          display={"flex"}
-          flexDirection={"column"}
-          justifyContent={"flex-start"}
+          paddingLeft={0}
+          display="flex"
+          flexDirection="row"
+          justifyContent="flex-start"
+          gap={2}
         >
-          <Typography>{userData.name}</Typography>
-          <Typography>{userData.height}</Typography>
-          <Typography>{userData.weight}</Typography>
+          <Box
+            border={"1px solid #ccc"}
+            padding={2}
+            width={"100%"}
+            maxWidth={300}
+            sx={{
+              textAlign: "center",
+            }}
+          >
+            <Typography mt={15} variant="h4">
+              {userData.name}
+            </Typography>
+            <Typography my={15} variant="h3">
+              {userData.height}cm
+            </Typography>
+            <Typography variant="h3">{userData.weight}kg</Typography>
+          </Box>
 
-          {posts && <MyPageList posts={posts} />}
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            flex={1}
+            marginLeft={2}
+          >
+            {posts && <MyPageList posts={posts} />}
+          </Box>
         </Box>
-      </Container>
+      </Box>
     </>
   );
 };
