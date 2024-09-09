@@ -30,6 +30,7 @@ export async function getAuthenticatedUser(userId: string) {
   return user;
 }
 
+
 // ユーザーが投稿したデータを取得する関数
 export async function fetchPosts(userId: string) {
   let { data: posts, error } = await supabase
@@ -38,6 +39,14 @@ export async function fetchPosts(userId: string) {
     .eq("user_id", userId);
   console.log(posts);
   if (!posts) {
+    console.error(error);
+  }
+
+
+//全体の投稿を取得する関数
+export async function getAllPosts() {
+  let { data: posts, error } = await supabase.from("posts").select("*");
+  if (error) {
     console.error(error);
   }
 

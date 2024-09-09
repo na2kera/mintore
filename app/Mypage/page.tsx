@@ -4,12 +4,14 @@ import { Box, Container, Typography } from "@mui/material";
 import { getAuthenticatedUser, isAuthenticated } from "../products/fetcher";
 import MyPageList from "../components/MyPageList";
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 const supabase = createClient();
 
 const MyPage: React.FC = async () => {
   const user = await isAuthenticated();
   const userData = await getAuthenticatedUser(user.id);
+
 
   const { data: posts, error } = await supabase
     .from("posts")
@@ -18,6 +20,10 @@ const MyPage: React.FC = async () => {
   if (error) {
     console.error(error);
   }
+
+
+
+  !userData && redirect("/protected");
 
   return (
     <>
