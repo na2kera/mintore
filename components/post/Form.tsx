@@ -9,9 +9,7 @@ type Props = { userData: User };
 const Form = ({ userData }: Props) => {
   const [activityDate, setActivityDate] = useState<string>("");
   const [moviePath, setMoviePath] = useState<string>("");
-  const [activityTime, setActivityTime] = useState<number | undefined>(
-    undefined
-  );
+  const [activityTime, setActivityTime] = useState<number>();
   const [comment, setComment] = useState<string>("");
 
   const postData = {
@@ -26,7 +24,7 @@ const Form = ({ userData }: Props) => {
     await sendPostData({ postData });
     setActivityDate("");
     setMoviePath("");
-    setActivityTime(undefined);
+    setActivityTime(30);
     setComment("");
   };
   return (
