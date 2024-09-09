@@ -43,11 +43,11 @@ const MoviesPartsList = () => {
             <Box
               display={"flex"}
               alignItems={"center"}
-              justifyContent={"center"}
               gap={3}
               bgcolor={"#F8EFA0"}
               width={"70%"}
               height={"25vh"}
+              pl={30}
             >
               <Link href={video.youtube_url}>
                 <Image
