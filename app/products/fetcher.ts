@@ -48,6 +48,5 @@ export async function getAllPosts() {
   if (error) {
     console.error(error);
   }
-
   return posts;
 }
