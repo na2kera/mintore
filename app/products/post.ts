@@ -4,7 +4,11 @@ import { Post } from "../types/post";
 const supabase = createClient();
 
 //投稿用のAPI
-export const sendPostData = async ({ postData }: { postData: Post }) => {
+export const sendPostData = async ({
+  postData,
+}: {
+  postData: Omit<Post, "id">;
+}) => {
   const { data, error } = await supabase
     .from("posts")
     .insert([
