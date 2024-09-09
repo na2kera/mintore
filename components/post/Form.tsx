@@ -1,16 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { User } from "@/app/types/user";
 import { sendPostData } from "@/app/products/post";
+import { useSearchParams } from "next/navigation";
 
-type Props = { userData: User };
+type Props = { userData: User; isVideo?: boolean };
 
-const Form = ({ userData }: Props) => {
+const Form = ({ userData, isVideo = false }: Props) => {
   const [activityDate, setActivityDate] = useState<string>("");
   const [moviePath, setMoviePath] = useState<string>("");
   const [activityTime, setActivityTime] = useState<number>(0);
   const [comment, setComment] = useState<string>("");
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (isVideo) {
+      const videoUrl = searchParams.get("v");
+      console.log(videoUrl);
+      setMoviePath(`https://www.youtube.com/watch?v=${videoUrl}`);
+    }
+  }, [isVideo, searchParams]);
 
   const postData = {
     user_id: userData.id,
@@ -48,6 +58,7 @@ const Form = ({ userData }: Props) => {
           <input
             type="text"
             id="moviePath"
+            value={moviePath}
             onChange={(e) => setMoviePath(e.target.value)}
             required
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"

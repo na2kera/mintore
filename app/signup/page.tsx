@@ -34,7 +34,7 @@ export default function Signup({ searchParams }: { searchParams: Message }) {
       return encodedRedirect(
         "success",
         "/signup",
-        "Thanks for signing up! Please check your email for a verification link.",
+        "Thanks for signing up! Please check your email for a verification link."
       );
     }
   };
