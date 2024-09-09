@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
 import { Video } from "../types/video";
 import Image from "next/image";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
 
 const supabase = createClient();
@@ -50,28 +50,24 @@ const MoviesPartsList = () => {
               pl={30}
               position={"relative"}
             >
+
+              <Link href={video.youtube_url}>
+                <Image
+                  src={video.thumbnail}
+                  width={350}
+                  height={350}
+                  alt="thumbnail"
+                />
+              </Link>
               <Box>
-                <Link href={video.youtube_url}>
-                  <Image
-                    src={video.thumbnail}
-                    width={350}
-                    height={350}
-                    style={{ objectFit: "cover" }}
-                    alt="thumbnail"
-                  />
+                <Typography fontSize={25}>{video.title}</Typography>
+                <Link href={`/post/${video.youtube_url.split("/")[3]}`}>
+                  <Button variant="contained" color="primary">
+                    投稿
+                  </Button>
                 </Link>
               </Box>
-              <Box maxWidth={"50%"}>
-                <Typography
-                  fontSize={25}
-                  style={{
-                    wordBreak: "break-word",
-                    overflowWrap: "break-word",
-                  }}
-                >
-                  {video.title}
-                </Typography>
-              </Box>
+
             </Box>
           </Box>
         );
