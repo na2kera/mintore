@@ -27,7 +27,6 @@ const MoviePartsList = ({ video, userData }: Props) => {
       userData.bookmark_list = userData.bookmark_list?.filter(
         (bookmark) => bookmark !== youtubeUrl
       );
-      console.log(userData.bookmark_list);
       await sendBookmarkData({
         userData,
         bookmarkData: userData.bookmark_list ?? [],
@@ -38,7 +37,6 @@ const MoviePartsList = ({ video, userData }: Props) => {
       userData.bookmark_list = userData.bookmark_list
         ? [...userData.bookmark_list, youtubeUrl]
         : [youtubeUrl];
-      console.log(userData.bookmark_list);
       await sendBookmarkData({
         userData,
         bookmarkData: userData.bookmark_list ?? [],
