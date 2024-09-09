@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import {
   fetchPosts,
   getAuthenticatedUser,
@@ -8,6 +8,7 @@ import {
 } from "../products/fetcher";
 import MyPageList from "../components/MyPageList";
 import { redirect } from "next/navigation";
+import Image from "next/image";
 
 const MyPage = async () => {
   const user = await isAuthenticated();
@@ -20,6 +21,38 @@ const MyPage = async () => {
   return (
     <>
       <Header />
+      <Box position={"fixed"} pl={170} pt={70}>
+        <Link href={"/Mypage/Kinnikun"} color="#000000">
+          <Box position={"relative"}>
+            <Box>
+              <Image
+                src={"/kinnikimage.png"}
+                width={200}
+                height={200}
+                alt={"kinnikimage"}
+                style={{ position: "relative" }}
+              />
+            </Box>
+            <Box
+              position={"absolute"}
+              top={0}
+              left={0}
+              right={0}
+              bottom={0}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              pt={15}
+            >
+              <Typography align="center" fontWeight={"bold"}>
+                ブックマーク
+                <br />
+                きんに君
+              </Typography>
+            </Box>
+          </Box>
+        </Link>
+      </Box>
       <Box>
         <Box
           paddingLeft={0}
