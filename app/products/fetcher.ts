@@ -29,3 +29,12 @@ export async function getAuthenticatedUser(userId: string) {
   }
   return user;
 }
+
+//全体の投稿を取得する関数
+export async function getAllPosts() {
+  let { data: posts, error } = await supabase.from("posts").select("*");
+  if (error) {
+    console.error(error);
+  }
+  return posts;
+}
