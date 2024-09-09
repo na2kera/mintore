@@ -3,7 +3,7 @@ import KinnikunLink from "./components/KinnikunLink";
 const Mintore = () => {
   return (
     <>
-      <KinnikunLink />
+      <KinnikunLink place="top" />
     </>
   );
 };
