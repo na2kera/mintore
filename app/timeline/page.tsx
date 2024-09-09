@@ -15,22 +15,27 @@ import Image from "next/image";
 import HomeIcon from "@mui/icons-material/Home";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import TimelineIcon from "@mui/icons-material/Timeline";
+import Link from "next/link";
 
 const TimeLine = () => {
   return (
     <Box display="flex" height="100vh" bgcolor="#f5f5f5">
       {/*サイドバー*/}
       <Box width="20%" bgcolor="#fff3b0" padding={2}>
-        <Typography variant="h5" gutterBottom>
-          みんトレ
-        </Typography>
+        <Link href="/">
+          <Typography variant="h5" gutterBottom>
+            みんトレ
+          </Typography>
+        </Link>
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary="mypage" />
-          </ListItem>
+          <Link href="/Mypage">
+            <ListItem button>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="mypage" />
+            </ListItem>
+          </Link>
           <ListItem button>
             <ListItemIcon>
               <FitnessCenterIcon />
@@ -85,9 +90,11 @@ const TimeLine = () => {
         display="flex"
         justifyContent="center"
       >
-        <Button variant="contained" color="primary">
-          投稿
-        </Button>
+        <Link href="/post">
+          <Button variant="contained" color="primary">
+            投稿
+          </Button>
+        </Link>
       </Box>
     </Box>
   );
