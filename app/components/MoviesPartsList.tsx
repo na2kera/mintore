@@ -3,9 +3,6 @@ import { usePathname } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
 import { Video } from "../types/video";
-import Image from "next/image";
-import { Box, Button, Typography } from "@mui/material";
-import Link from "next/link";
 import { User } from "../types/user";
 import MoviePartsList from "./MoviePartsList";
 
@@ -14,7 +11,6 @@ type Props = {
 };
 
 const MoviesPartsList = ({ userData }: Props) => {
-  console.log(userData);
   const pathname = usePathname();
 
   const supabase = createClient();
