@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/client";
 import { Post } from "../types/post";
+import { User } from "../types/user";
 
 const supabase = createClient();
 
@@ -21,4 +22,22 @@ export const sendPostData = async ({ postData }: { postData: Post }) => {
     alert("投稿に失敗しました");
   }
   alert("投稿に成功しました");
+};
+
+//プロフィール登録用のAPI
+export const sendProfileData = async ({
+  profileData,
+}: {
+  profileData: Pick<User, "id" | "name" | "height" | "weight">;
+}) => {
+  const { data, error } = await supabase
+    .from("users")
+    .upsert([profileData])
+    .select();
+
+  if (error) {
+    alert("プロフィール登録に失敗しました");
+    return;
+  }
+  alert("プロフィール登録に成功しました");
 };
