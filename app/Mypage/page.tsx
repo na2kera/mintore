@@ -6,9 +6,8 @@ import MyPageList from "../components/MyPageList";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
-const supabase = createClient();
-
 const MyPage = async () => {
+  const supabase = createClient();
   const user = await isAuthenticated();
   const userData = await getAuthenticatedUser(user.id);
 
