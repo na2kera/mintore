@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { User } from "@/app/types/user";
 import { sendPostData } from "@/app/products/post";
 import { useSearchParams } from "next/navigation";
+import Header from "../Header";
 
 type Props = { userData: User; isVideo?: boolean };
 
@@ -39,9 +40,7 @@ const Form = ({ userData, isVideo = false }: Props) => {
   };
   return (
     <div className="bg-gray-50 min-h-screen">
-      <header className="bg-yellow-200 py-6">
-        <h1 className="text-3xl font-bold text-white text-center">mintore</h1>
-      </header>
+      <Header />
       <div className="max-w-3xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
         <div className="mb-4">
           <label

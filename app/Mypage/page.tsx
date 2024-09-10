@@ -24,6 +24,7 @@ const MyPage = async () => {
 
   return (
     <>
+      <Header />
       <Box position={"fixed"} pl={170} pt={70}>
         <Link href={"/Mypage/Kinnikun"} color="#000000">
           <Box position={"relative"}>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Video } from "../types/video";
 import { User } from "../types/user";
 import MoviePartsList from "./MoviePartsList";
+import Header from "./Header";
 
 type Props = {
   userData: User;
@@ -34,6 +35,7 @@ const MoviesPartsList = ({ userData }: Props) => {
 
   return (
     <>
+      <Header />
       {videos?.map((video) => {
         return <MoviePartsList video={video} userData={userData} />;
       })}
