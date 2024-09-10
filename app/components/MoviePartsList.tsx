@@ -54,35 +54,80 @@ const MoviePartsList = ({ video, userData }: Props) => {
         pt={5}
       >
         <Box
-          display={"flex"}
-          alignItems={"center"}
-          gap={3}
-          bgcolor={"#F8EFA0"}
-          width={"70%"}
-          height={"25vh"}
-          pl={30}
-          position={"relative"}
+          display="flex"
+          alignItems="center"
+          gap={4}
+          bgcolor="#F8EFA0"
+          width="80%"
+          maxWidth="1000px"
+          height="auto"
+          p={4}
+          borderRadius={2}
+          boxShadow={2}
         >
-          {userData.bookmark_list?.includes(video.youtube_url) ? (
-            <BookmarkIcon onClick={() => toggleBookmark(video.youtube_url)} />
-          ) : (
-            <BookmarkBorderIcon
-              onClick={() => toggleBookmark(video.youtube_url)}
-            />
-          )}
-
-          <Link href={video.youtube_url}>
-            <Image
-              src={video.thumbnail}
-              width={350}
-              height={350}
-              alt="thumbnail"
-            />
-          </Link>
-          <Box>
-            <Typography fontSize={25}>{video.title}</Typography>
+          <Box position="relative">
+            <Link href={video.youtube_url}>
+              <Image
+                src={video.thumbnail}
+                width={250}
+                height={140}
+                alt="thumbnail"
+                style={{ borderRadius: "8px" }}
+              />
+            </Link>
+            <Box
+              position="absolute"
+              top={8}
+              left={8}
+              bgcolor="rgba(255, 255, 255, 0.8)"
+              borderRadius="50%"
+              p={0.5}
+            >
+              {userData.bookmark_list?.includes(video.youtube_url) ? (
+                <BookmarkIcon
+                  onClick={() => toggleBookmark(video.youtube_url)}
+                  sx={{
+                    cursor: "pointer",
+                    color: "blue",
+                    fontSize: "1.5rem",
+                    transition: "transform 0.2s ease-in-out",
+                    "&:hover": {
+                      transform: "scale(1.2)",
+                    },
+                  }}
+                />
+              ) : (
+                <BookmarkBorderIcon
+                  onClick={() => toggleBookmark(video.youtube_url)}
+                  sx={{
+                    cursor: "pointer",
+                    color: "blue",
+                    fontSize: "1.5rem",
+                    transition: "transform 0.2s ease-in-out",
+                    "&:hover": {
+                      transform: "scale(1.2)",
+                    },
+                  }}
+                />
+              )}
+            </Box>
+          </Box>
+          <Box flexGrow={1}>
+            <Typography fontSize={20} fontWeight="bold" mb={2}>
+              {video.title}
+            </Typography>
             <Link href={`/post/${video.youtube_url.split("/")[3]}`}>
-              <Button variant="contained" color="primary">
+              <Button
+                variant="contained"
+                size="small"
+                color="success"
+                sx={{
+                  backgroundColor: "#4CAF50",
+                  "&:hover": {
+                    backgroundColor: "#45a049",
+                  },
+                }}
+              >
                 投稿
               </Button>
             </Link>
