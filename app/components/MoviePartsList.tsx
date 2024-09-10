@@ -21,8 +21,8 @@ const MoviePartsList = ({ video, userData }: Props) => {
 
   //ブックマークの状態を変更する関数
   const toggleBookmark = async (youtubeUrl: string) => {
-    if (isBookmarked) {
-      setIsBookmarked(false);
+    if (userData.bookmark_list?.includes(youtubeUrl)) {
+      setIsBookmarked(!isBookmarked);
       //ブックマークを削除する
       userData.bookmark_list = userData.bookmark_list?.filter(
         (bookmark) => bookmark !== youtubeUrl
@@ -32,7 +32,7 @@ const MoviePartsList = ({ video, userData }: Props) => {
         bookmarkData: userData.bookmark_list ?? [],
       });
     } else {
-      setIsBookmarked(true);
+      setIsBookmarked(!isBookmarked);
       //ブックマークを追加する
       userData.bookmark_list = userData.bookmark_list
         ? [...userData.bookmark_list, youtubeUrl]
@@ -63,7 +63,7 @@ const MoviePartsList = ({ video, userData }: Props) => {
           pl={30}
           position={"relative"}
         >
-          {isBookmarked ? (
+          {userData.bookmark_list?.includes(video.youtube_url) ? (
             <BookmarkIcon onClick={() => toggleBookmark(video.youtube_url)} />
           ) : (
             <BookmarkBorderIcon
