@@ -9,6 +9,10 @@ import {
 import MyPageList from "../components/MyPageList";
 import { redirect } from "next/navigation";
 import Image from "next/image";
+import Person2Icon from "@mui/icons-material/Person2";
+import AssessmentIcon from "@mui/icons-material/Assessment";
+import ScaleIcon from "@mui/icons-material/Scale";
+import { VideoSettings } from "@mui/icons-material";
 
 const MyPage = async () => {
   const user = await isAuthenticated();
@@ -66,27 +70,48 @@ const MyPage = async () => {
             padding={2}
             width={"100%"}
             maxWidth={300}
-            sx={{
-              textAlign: "center",
-            }}
+            display={"flex"}
+            alignItems={"flex-start"}
+            flexDirection={"column"}
           >
-            <Typography mt={15} variant="h4">
-              {userData.name}
-            </Typography>
-            <Typography my={15} variant="h3">
-              {userData.height}cm
-            </Typography>
-            <Typography variant="h3">{userData.weight}kg</Typography>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              gap={2}
+              mt={10}
+            >
+              <Person2Icon style={{ width: 50, height: 50 }} />
+              <Typography variant="h4">{userData.name}</Typography>
+            </Box>
+
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              my={12}
+              gap={2}
+            >
+              <AssessmentIcon style={{ width: 50, height: 50 }} />
+              <Typography variant="h3" fontSize={30}>
+                {userData.height}cm
+              </Typography>
+            </Box>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              gap={2}
+            >
+              <ScaleIcon style={{ width: 50, height: 50 }} />
+              <Typography variant="h3" fontSize={30}>
+                {userData.weight}kg
+              </Typography>
+            </Box>
           </Box>
 
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            flex={1}
-            marginLeft={2}
-          >
-            {posts && <MyPageList posts={posts} />}
+          <Box display="flex" flexDirection="column" alignItems="center">
+            {posts && <MyPageList posts={posts} userData={userData} />}
           </Box>
         </Box>
       </Box>
