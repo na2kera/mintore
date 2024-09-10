@@ -1,6 +1,6 @@
-import Form from "@/components/post/Form";
 import React from "react";
 import { getAuthenticatedUser, isAuthenticated } from "../products/fetcher";
+import Form from "@/components/post/Form";
 
 const page = async () => {
   const user = await isAuthenticated();
