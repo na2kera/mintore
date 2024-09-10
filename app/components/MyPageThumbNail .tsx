@@ -1,41 +1,31 @@
-import { createClient } from "@/utils/supabase/server";
 import { Post } from "../types/post";
 import { User } from "../types/user";
-import { Video } from "../types/video";
-import { Link } from "@mui/material";
 import Image from "next/image";
 
 type Props = {
-  posts: Post[];
+  post: Post;
   userData: User[];
 };
-const MyPageThumbNail: React.FC<Props> = async ({ posts, userData }) => {
-  const supabase = createClient();
+const MyPageThumbNail: React.FC<Props> = async ({ post, userData }) => {
+  const watchUrl = post.movie_path.split("watch?v=")[1];
 
-  let { data: Videos, error } = await supabase.from("Videos").select("*");
-  console.log(Videos);
-
-  const isMatchFound = posts.some(
-    (post) =>
-      Videos &&
-      Videos.some((video: Video) => post.movie_path === video.youtube_url)
+  return (
+    <>
+      <Image
+        src={`https://img.youtube.com/vi/${watchUrl}/0.jpg`}
+        width={350}
+        height={180}
+        alt="thumbnail"
+        style={{
+          objectFit: "cover",
+          borderRadius: "8px",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+          transition: "transform 0.2s ease-in-out",
+        }}
+        className="hover:transform hover:scale-105"
+      />
+    </>
   );
-  console.log(isMatchFound);
-
-  if (isMatchFound) {
-    return (
-      <>
-        {/* <Link href={post.movie_path}>
-          <Image
-            src={video.thumbnail}
-            width={350}
-            height={350}
-            alt="thumbnail"
-          />
-        </Link> */}
-      </>
-    );
-  }
 };
 
 export default MyPageThumbNail;
