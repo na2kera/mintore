@@ -3,14 +3,17 @@ import { usePathname } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
 import { Video } from "../types/video";
-import Image from "next/image";
-import { Box, Typography } from "@mui/material";
-import Link from "next/link";
+import { User } from "../types/user";
+import MoviePartsList from "./MoviePartsList";
 
-const supabase = createClient();
+type Props = {
+  userData: User;
+};
 
-const MoviesPartsList = () => {
+const MoviesPartsList = ({ userData }: Props) => {
   const pathname = usePathname();
+
+  const supabase = createClient();
 
   const [videos, setVideos] = useState<Video[]>([]);
 
@@ -32,35 +35,7 @@ const MoviesPartsList = () => {
   return (
     <>
       {videos?.map((video) => {
-        return (
-          <Box
-            key={video.id}
-            display={"flex"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            pt={5}
-          >
-            <Box
-              display={"flex"}
-              alignItems={"center"}
-              gap={3}
-              bgcolor={"#F8EFA0"}
-              width={"70%"}
-              height={"25vh"}
-              pl={30}
-            >
-              <Link href={video.youtube_url}>
-                <Image
-                  src={video.thumbnail}
-                  width={350}
-                  height={350}
-                  alt="thumbnail"
-                />
-              </Link>
-              <Typography fontSize={25}>{video.title}</Typography>
-            </Box>
-          </Box>
-        );
+        return <MoviePartsList video={video} userData={userData} />;
       })}
     </>
   );

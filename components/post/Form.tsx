@@ -1,13 +1,28 @@
 "use client";
-import React, { useState } from "react";
+
+
+import React, { useEffect, useState } from "react";
 import { User } from "@/app/types/user";
 import { sendPostData } from "@/app/products/post";
-type Props = { userData: User };
-const Form = ({ userData }: Props) => {
+import { useSearchParams } from "next/navigation";
+
+type Props = { userData: User; isVideo?: boolean };
+
+const Form = ({ userData, isVideo = false }: Props) => {
   const [activityDate, setActivityDate] = useState<string>("");
   const [moviePath, setMoviePath] = useState<string>("");
-  const [activityTime, setActivityTime] = useState<number>();
+  const [activityTime, setActivityTime] = useState<number>(30);
+
   const [comment, setComment] = useState<string>("");
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (isVideo) {
+      const videoUrl = searchParams.get("v");
+      console.log(videoUrl);
+      setMoviePath(`https://www.youtube.com/watch?v=${videoUrl}`);
+    }
+  }, [isVideo, searchParams]);
 
   const postData = {
     user_id: userData.id,
@@ -18,7 +33,9 @@ const Form = ({ userData }: Props) => {
   };
 
   const submitReset = async () => {
-    await sendPostData({ postData });
+
+    postData && (await sendPostData({ postData }));
+
     setActivityDate("");
     setMoviePath("");
     setActivityTime(30);
