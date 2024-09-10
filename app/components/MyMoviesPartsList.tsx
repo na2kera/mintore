@@ -6,6 +6,11 @@ import { Video } from "../types/video";
 import Image from "next/image";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
+import { User } from "@supabase/supabase-js";
+import {
+  getAuthenticatedUser,
+  isAuthenticated,
+} from "../products/clientFetcher";
 
 const supabase = createClient();
 
@@ -13,11 +18,22 @@ const MyMoviesPartsList = () => {
   const pathname = usePathname();
 
   const [videos, setVideos] = useState<Video[]>([]);
+  const [user, setUser] = useState<User>();
 
   const result = location.href.split("/");
   const bodyparts = result[result.length - 1];
 
   useEffect(() => {
+    const fetchUser = async () => {
+      const user = await isAuthenticated();
+      setUser(user);
+      if (user) {
+        const userData = await getAuthenticatedUser(user.id);
+        setUser(userData);
+        console.log(userData);
+      }
+    };
+
     const fetchBodyPartsVideos = async () => {
       let { data: Videos, error } = await supabase
         .from("Videos")
@@ -27,6 +43,7 @@ const MyMoviesPartsList = () => {
       Videos && setVideos(Videos);
     };
     fetchBodyPartsVideos();
+    fetchUser();
   }, []);
 
   return (
