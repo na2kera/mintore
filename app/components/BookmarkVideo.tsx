@@ -55,7 +55,7 @@ const BookmarkVideo: React.FC<VideoCardProps> = ({ video, userData }) => {
         display="flex"
         alignItems="center"
         gap={4}
-        bgcolor="#F8EFA0"
+        bgcolor="#f5f5f5"
         width="80%"
         maxWidth="1000px"
         height="auto"
