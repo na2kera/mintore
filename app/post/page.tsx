@@ -1,8 +1,11 @@
+import Form from "@/components/post/Form";
 import React from "react";
+import { getAuthenticatedUser, isAuthenticated } from "../products/fetcher";
 
-const page = () => {
-  return;
-  //何を投稿するかはミーティングで決める
+const page = async () => {
+  const user = await isAuthenticated();
+  const userData = await getAuthenticatedUser(user.id);
+  return <Form userData={userData} />;
 };
 
 export default page;
