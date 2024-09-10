@@ -5,4 +5,5 @@ export type Post = {
   activity_time: number;
   comment: string;
   id: number;
+  thumbnail: string;
 };

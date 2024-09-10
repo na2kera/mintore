@@ -1,5 +1,6 @@
 "use client";
 
+
 import React, { useEffect, useState } from "react";
 import { User } from "@/app/types/user";
 import { sendPostData } from "@/app/products/post";
@@ -12,6 +13,7 @@ const Form = ({ userData, isVideo = false }: Props) => {
   const [activityDate, setActivityDate] = useState<string>("");
   const [moviePath, setMoviePath] = useState<string>("");
   const [activityTime, setActivityTime] = useState<number>(30);
+
   const [comment, setComment] = useState<string>("");
   const searchParams = useSearchParams();
 
@@ -32,7 +34,9 @@ const Form = ({ userData, isVideo = false }: Props) => {
   };
 
   const submitReset = async () => {
+
     postData && (await sendPostData({ postData }));
+
     setActivityDate("");
     setMoviePath("");
     setActivityTime(30);
