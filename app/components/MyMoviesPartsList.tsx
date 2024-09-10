@@ -1,4 +1,5 @@
 "use client";
+import { Box } from "@mui/material";
 import { usePathname } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
@@ -46,18 +47,27 @@ const MyMoviesPartsList = () => {
   }, []);
 
   return (
-    <>
+    <Box display="flex" flexDirection="column" alignItems="center" width="100%">
       {videos?.map((video) => {
         return (
-          <>
-            {" "}
-            {user && user?.bookmark_list?.includes(video.youtube_url) && (
-              <BookmarkVideo video={video} />
-            )}{" "}
-          </>
+          user &&
+          user?.bookmark_list?.includes(video.youtube_url) && (
+            <Box
+              key={video.id}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              width="100%"
+              pt={5}
+            >
+              <Box width="80%" maxWidth="1000px">
+                <BookmarkVideo video={video} userData={user} />
+              </Box>
+            </Box>
+          )
         );
       })}
-    </>
+    </Box>
   );
 };
 
